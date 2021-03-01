@@ -31,7 +31,7 @@ $ java -versionjava version "11.0.10" 2021-01-19 LTSJava(TM) SE Runtime Enviro
 $ native-image --versionGraalVM Version 21.0.0 (Java Version 11.0.10+8-LTS-jvmci-21.0-b06)
 ```
 
-Let's create a native image (for fun):
+Let's create a native image using GraalVM Enterprise Edition (for fun):
 
 ![red computer](images/userinput.png)
 
