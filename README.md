@@ -100,7 +100,7 @@ __  ____  __  _____   ___  __ ____  ______ --/ __ \/ / / / _ | / _ \/ //_/ / / 
 $ curl http://localhost:8080/hello-resteasyHello RESTEasy
 ```
 
-### Deploy to OpenShift Using the New Container
+### Deploy the New Container to OpenShift
 
 First, let's push our new container image to a registry.  For this example. we'll use DockerHub.
 
