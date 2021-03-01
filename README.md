@@ -2,6 +2,10 @@
 
 GraalVM is compatible with many of today's most popular microservices frameworks, including Micronaut, Quarkus and Spring Boot. In this tutorial, we'll focus on building an application using Quarkus.  We'll create a native image, a container and ultimately deploy the container to OpenShift.
 
+Note: Throughout this tutorial, when you see a ![red computer](images/userinput.png)
+icon, it indicates a command that you'll need to enter in your terminal.
+
+
 ### Let's get started!
 
 Browse to [https://code.quarkus.io/](https://code.quarkus.io/) and create a new project.
@@ -20,12 +24,16 @@ Install either [GraalVM Community Edition](https://www.graalvm.org/docs/getting-
 
 Confirm your installation:
 
+![red computer](images/userinput.png)
+
 ```
 $ java -versionjava version "11.0.10" 2021-01-19 LTSJava(TM) SE Runtime Environment GraalVM EE 21.0.0 (build 11.0.10+8-LTS-jvmci-21.0-b06)Java HotSpot(TM) 64-Bit Server VM GraalVM EE 21.0.0 (build 11.0.10+8-LTS-jvmci-21.0-b06, mixed mode, sharing
 $ native-image --versionGraalVM Version 21.0.0 (Java Version 11.0.10+8-LTS-jvmci-21.0-b06)
 ```
 
 You can create a native image if you choose:
+
+![red computer](images/userinput.png)
 
 ```
 $ export GRAALVM_HOME=<path to your GraalVM install>; export GRAALVM_HOME
@@ -35,6 +43,8 @@ $ target/quarkus-graalvm-1.0.0-SNAPSHOT-runner__  ____  __  _____   ___  __ ___
 
 You can also confirm what GraalVM distribution was used to build the native image:
 
+![red computer](images/userinput.png)
+
 ```
 $ strings target/quarkus-graalvm-1.0.0-SNAPSHOT-runner | grep GraalVMGraalVM EE 21.0.0
 ```
@@ -42,6 +52,8 @@ $ strings target/quarkus-graalvm-1.0.0-SNAPSHOT-runner | grep GraalVMGraalVM EE
 ### Build the Container Image
 
 By default, the `.dockerignore` will exclude everything but the `target` directory during the image build so we'll need to edit `.dockerignore` and add the following exceptions:
+
+![red computer](images/userinput.png)
 
 ```
 !src!pom.xml
@@ -60,9 +72,13 @@ The end result `.dockerignore` should be:
 
 Now we can build the container image:
 
+![red computer](images/userinput.png)
+
 ```
 $ docker build -f src/main/docker/Dockerfile.multistage -t graalvm-quarkus .
 ```
+
+![red computer](images/userinput.png)
 
 ```
 $ docker imagesREPOSITORY               TAG           IMAGE ID         CREATED           SIZEgraalvm-quarkus          latest        56fbba327b71     19 hours ago      96.3MB
@@ -70,12 +86,16 @@ $ docker imagesREPOSITORY               TAG           IMAGE ID         CREATED 
 
 To test:
 
+![red computer](images/userinput.png)
+
 ```
 $ docker run -i --rm -p 8080:8080 graalvm-quarkus
 ```
 ```
 __  ____  __  _____   ___  __ ____  ______ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \--\___\_\____/_/ |_/_/|_/_/|_|\____/___/2021-02-26 14:14:47,102 INFO  [io.quarkus] (main) quarkus-graalvm 1.0.0-SNAPSHOT native (powered by Quarkus 1.12.0.Final) started in 0.056s. Listening on: http://0.0.0.0:80802021-02-26 14:14:47,105 INFO  [io.quarkus] (main) Profile prod activated.2021-02-26 14:14:47,105 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
 ```
+![red computer](images/userinput.png)
+
 ```
 $ curl http://localhost:8080/hello-resteasyHello RESTEasy
 ```
@@ -83,6 +103,8 @@ $ curl http://localhost:8080/hello-resteasyHello RESTEasy
 ### Deploy to OpenShift Using the New Container
 
 First, let's push our new container image to a registry.  For this example. we'll use DockerHub.
+
+![red computer](images/userinput.png)
 
 ```
 $ docker loginAuthenticating with existing credentials...Login Succeeded
@@ -129,12 +151,18 @@ You can also scale the pods (up/down) and view other characteristics of your app
 
 ### (Alternative) Using the Quay Registry
 
+![red computer](images/userinput.png)
+
 ```
 $ docker ps -lCONTAINER ID   IMAGE             COMMAND   CREATED         STATUS                       PORTS     NAMES50ab0ee29ef5   graalvm-quarkus   "sh"      5 minutes ago   Exited (127) 5 minutes ago             keen_sinoussi
 ```
+![red computer](images/userinput.png)
+
 ```
 $ docker commit 50ab0ee29ef5 quay.io/scottseighman/graalvm-quarkus
 ```
+![red computer](images/userinput.png)
+
 ```
 $ docker push quay.io/scottseighman/graalvm-quarkus
 ```
