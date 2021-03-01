@@ -127,7 +127,7 @@ You can also scale the pods (up/down) and view other characteristics of your app
 
 ![](images/ocp-8.png)
 
-### (Alternaive) Using the Quay Registry
+### (Alternative) Using the Quay Registry
 
 ```
 $ docker ps -lCONTAINER ID   IMAGE             COMMAND   CREATED         STATUS                       PORTS     NAMES50ab0ee29ef5   graalvm-quarkus   "sh"      5 minutes ago   Exited (127) 5 minutes ago             keen_sinoussi
