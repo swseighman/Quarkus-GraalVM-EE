@@ -112,7 +112,7 @@ $ docker tag graalvm-quarkus:latest seighman/graalvm-quarkus
 $ docker push seighman/graalvm-quarkus
 Using default tag: latestThe push refers to repository [docker.io/seighman/graalvm-quarkus]e4f2332f0aea: Pushed057acc6f6ada: Pushed33f18c9a6e15: Pushedlatest: digest: sha256:d8cc4f5065b54ee9c806b... size: 1370
 ```
-Over at [hub.docker.com](hub.docker.com), you can verify the image was added to your repository.
+Over at [https://hub.docker.com](https://hub.docker.com/), you can verify the image was added to your repository.
 
 ![](images/ocp-9.png)
 
