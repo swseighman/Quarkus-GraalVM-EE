@@ -20,7 +20,7 @@ Choose **RESTEasy JAX-RS** extension
 
 Download and unzip the `quarkus-graalvm.zip` project.
 
-Install either [GraalVM Community Edition](https://www.graalvm.org/docs/getting-started/) or [GraalVM Enterprise Edition](https://github.com/swseighman/Installing-GraalVM-Enterprise-Edition).
+Install [GraalVM Enterprise Edition](https://github.com/swseighman/Installing-GraalVM-Enterprise-Edition).
 
 Confirm your installation:
 
